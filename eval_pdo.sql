@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 24 mars 2022 à 14:03
+-- Généré le : ven. 25 mars 2022 à 11:04
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -50,6 +50,58 @@ CREATE TABLE `animals` (
 INSERT INTO `animals` (`animals_id`, `animals_name`, `animals_age`, `animals_species`, `animals_entryDate`, `animals_sex`, `animals_parents`, `animals_diet`, `animals_treatment`, `animals_enclosure`, `animals_environment`, `animals_deathDate`, `animals_moreInfos`) VALUES
 (1, 'Sarabi', 12, 'Lion', '2022-03-23', '', 'other lions', 'Meat & fish', 'none', 'Plane of the Lions', 'Savannah', NULL, 'Mother of Simba');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `enclosures`
+--
+
+CREATE TABLE `enclosures` (
+  `enclosures_id` int(11) NOT NULL,
+  `enclosures_env` varchar(250) NOT NULL,
+  `enclosures_pop` int(11) DEFAULT NULL,
+  `enclosures_name` varchar(250) NOT NULL,
+  `enclosures_size` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `enclosures`
+--
+
+INSERT INTO `enclosures` (`enclosures_id`, `enclosures_env`, `enclosures_pop`, `enclosures_name`, `enclosures_size`) VALUES
+(1, 'Savannah', 20, 'Plane of the Lions', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `keepers`
+--
+
+CREATE TABLE `keepers` (
+  `keepers_id` int(11) NOT NULL,
+  `keepers_firstName` varchar(250) NOT NULL,
+  `keepers_lastName` varchar(250) NOT NULL,
+  `keepers_entryDate` date NOT NULL,
+  `keepers_gender` varchar(1) NOT NULL,
+  `keepers_phone` varchar(20) NOT NULL,
+  `keepers_mail` varchar(250) NOT NULL,
+  `keepers_specialty` varchar(250) NOT NULL,
+  `keepers_MaxEnclosures` int(11) NOT NULL,
+  `keepers_superior` varchar(250) NOT NULL,
+  `keepers_leaveDate` date NOT NULL,
+  `keepers_moreInfos` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `zoo`
+--
+
+CREATE TABLE `zoo` (
+  `zoo_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Index pour les tables déchargées
 --
@@ -61,6 +113,24 @@ ALTER TABLE `animals`
   ADD PRIMARY KEY (`animals_id`);
 
 --
+-- Index pour la table `enclosures`
+--
+ALTER TABLE `enclosures`
+  ADD PRIMARY KEY (`enclosures_id`);
+
+--
+-- Index pour la table `keepers`
+--
+ALTER TABLE `keepers`
+  ADD PRIMARY KEY (`keepers_id`);
+
+--
+-- Index pour la table `zoo`
+--
+ALTER TABLE `zoo`
+  ADD PRIMARY KEY (`zoo_id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -69,9 +139,26 @@ ALTER TABLE `animals`
 --
 ALTER TABLE `animals`
   MODIFY `animals_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `enclosures`
+--
+ALTER TABLE `enclosures`
+  MODIFY `enclosures_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `keepers`
+--
+ALTER TABLE `keepers`
+  MODIFY `keepers_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `zoo`
+--
+ALTER TABLE `zoo`
+  MODIFY `zoo_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
